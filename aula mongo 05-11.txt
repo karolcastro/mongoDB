@@ -1,0 +1,5748 @@
+*show dbs
+*use reprograma
+*show collections
+
+
+
+
+1.	Selecione todos os registros.
+*db.alunas.find()
+
+2.	Selecione todos os registros e deixe a com apresenta��o melhor vis�vel.
+*db.alunas.find().pretty()
+
+3.	Selecione todos os registros em que o nome seja igual a �Sonia�.
+*db.alunas.find({"nome":"Sonia"}).pretty()
+
+4.	Selecione todos os registros em que a aluna nasceu em S�o Paulo.
+*db.alunas.find({"nasceuEmSp":"true"}).pretty()
+
+5.	Selecione todos os registros em que contenha a t�tulo do livro igual a �Cangaceiro Java�.
+*db.alunas.find({"livros.titulo":"Cangaceiro Java"}).pretty()
+
+6.	Selecione todos os registros em que a aluna tenha o livro �Clean Code A� e o nome �Helena�. 
+*db.alunas.find({$and:[{"livros.titulo":"Clean Code","nome":"Helena"}]}).pretty()
+
+7.	Selecione todos os registros em que a aluna n�o tenha nascido em sp e tenha o livro Cangaceiro JavaScript.
+* db.alunas.find({$and:[{"livros.titulo":"Cangaceiro Javascript","nasceuEmSp":"false"}]}).pretty()
+
+8.	Selecione todos os registros em que a aluna contenha  o livro Java � Web Developers ou Clean Code B. Primeiro: realize o exerc�cio com o operador ou e posteriormente realize o exerc�cio com o operador in.
+*db.alunas.find({$or:[{"livros.titulo":"Clean Code"},{"livros.titulo":"Eloquente Java"}]}).pretty()
+
+9.	Pegue o exerc�cio acima e inclua tamb�m aonde a aluna pode ter nascido em sp.
+*db.alunas.find({$or:[{"livros.titulo":"Clean Code"},{"livros.titulo":"Eloquente Java"}],"nasceuEmSp":"true"}).pretty()
+
+
+Utilizando os dois operamkfkvdvdmdvvbbdores juntos. $or e $in.
+
+10.	Procure todas as alunas que tenham nascido em s�o paulo ou os livros �MySQL� e �MongoDB�.
+*db.alunas.find({$or:[{"nasceuEmSp":"true"},{"livros.livros":{$in:["Clean Code","Eloquente Java"]}}]}).pretty()
+
+
+MongoDB shell version v4.2.0
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("d95e5c39-b352-4663-8402-0b0148e9c844") }
+MongoDB server version: 4.2.0
+Server has startup warnings:
+2019-11-04T19:13:52.455-0300 I  CONTROL  [initandlisten]
+2019-11-04T19:13:52.456-0300 I  CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-11-04T19:13:52.456-0300 I  CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-11-04T19:13:52.456-0300 I  CONTROL  [initandlisten]
+---
+Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+and anyone you share the URL with. MongoDB may use this information to make product
+improvements and to suggest MongoDB products and deployment options to you.
+
+To enable free monitoring, run the following command: db.enableFreeMonitoring()
+To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+
+> show dbs
+admin       0.000GB
+config      0.000GB
+local       0.000GB
+reprograma  0.000GB
+> use reprograma
+switched to db reprograma
+> show collections
+alunas
+> db.alunas.find()
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15168"), "nome" : "Maria Eduarda", "dateOfBirth" : "11/08/1992", "nasceuEmSp" : "true", "id" : 4, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15169"), "nome" : "Natalya", "dateOfBirth" : "12/08/1989", "nasceuEmSp" : "false", "id" : 1, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"), "nome" : "Maria ", "dateOfBirth" : "11/08/1992", "nasceuEmSp" : "false", "id" : 3, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"), "nome" : "Natalia", "dateOfBirth" : "11/08/1988", "nasceuEmSp" : "true", "id" : 2, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" }, { "titulo" : "pequeno principe", "leu" : "true" }, { "titulo" : "pequeno principe", "leu" : "true" }, { "titulo" : "pequeno principe", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"), "nome" : "Bianca", "dateOfBirth" : "11/08/1994", "nasceuEmSp" : "true", "id" : 5, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"), "nome" : "Marcia", "dateOfBirth" : "11/08/1991", "nasceuEmSp" : "true", "id" : 7, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"), "nome" : "Barbara", "dateOfBirth" : "11/08/1996", "nasceuEmSp" : "false", "id" : 6, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"), "nome" : "Livia", "dateOfBirth" : "14/09/1991", "nasceuEmSp" : "true", "id" : 8, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15170"), "nome" : "Luanda", "dateOfBirth" : "14/09/1992", "nasceuEmSp" : "false", "id" : 12, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15171"), "nome" : "Larissa", "dateOfBirth" : "14/09/1994", "nasceuEmSp" : "true", "id" : 13, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15172"), "nome" : "Izadora", "dateOfBirth" : "14/09/1992", "nasceuEmSp" : "true", "id" : 11, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15173"), "nome" : "Maria do Bairro", "dateOfBirth" : "14/09/1990", "nasceuEmSp" : "true", "id" : 14, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15174"), "nome" : "Arya Stark ", "dateOfBirth" : "14/09/2000", "nasceuEmSp" : "false", "id" : 15, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15175"), "nome" : "Frida", "dateOfBirth" : "14/09/1950", "nasceuEmSp" : "false", "id" : 16, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15176"), "nome" : "Fatima", "dateOfBirth" : "14/09/1960", "nasceuEmSp" : "true", "id" : 17, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15177"), "nome" : "Denise", "dateOfBirth" : "14/09/1986", "nasceuEmSp" : "false", "id" : 9, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15178"), "nome" : "Helena", "dateOfBirth" : "14/09/1990", "nasceuEmSp" : "true", "id" : 10, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15179"), "nome" : "Sonia", "dateOfBirth" : "10/08/1954", "nasceuEmSp" : "false", "id" : 18, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+> db.alunas.find().pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.fin({"nome":"Sonia"}).pretty()
+2019-11-05T19:31:41.088-0300 E  QUERY    [js] uncaught exception: TypeError: db.alunas.fin is not a function :
+@(shell):1:1
+> db.alunas.find({})
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15168"), "nome" : "Maria Eduarda", "dateOfBirth" : "11/08/1992", "nasceuEmSp" : "true", "id" : 4, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15169"), "nome" : "Natalya", "dateOfBirth" : "12/08/1989", "nasceuEmSp" : "false", "id" : 1, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"), "nome" : "Maria ", "dateOfBirth" : "11/08/1992", "nasceuEmSp" : "false", "id" : 3, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"), "nome" : "Natalia", "dateOfBirth" : "11/08/1988", "nasceuEmSp" : "true", "id" : 2, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" }, { "titulo" : "pequeno principe", "leu" : "true" }, { "titulo" : "pequeno principe", "leu" : "true" }, { "titulo" : "pequeno principe", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"), "nome" : "Bianca", "dateOfBirth" : "11/08/1994", "nasceuEmSp" : "true", "id" : 5, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"), "nome" : "Marcia", "dateOfBirth" : "11/08/1991", "nasceuEmSp" : "true", "id" : 7, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"), "nome" : "Barbara", "dateOfBirth" : "11/08/1996", "nasceuEmSp" : "false", "id" : 6, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"), "nome" : "Livia", "dateOfBirth" : "14/09/1991", "nasceuEmSp" : "true", "id" : 8, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15170"), "nome" : "Luanda", "dateOfBirth" : "14/09/1992", "nasceuEmSp" : "false", "id" : 12, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15171"), "nome" : "Larissa", "dateOfBirth" : "14/09/1994", "nasceuEmSp" : "true", "id" : 13, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15172"), "nome" : "Izadora", "dateOfBirth" : "14/09/1992", "nasceuEmSp" : "true", "id" : 11, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15173"), "nome" : "Maria do Bairro", "dateOfBirth" : "14/09/1990", "nasceuEmSp" : "true", "id" : 14, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15174"), "nome" : "Arya Stark ", "dateOfBirth" : "14/09/2000", "nasceuEmSp" : "false", "id" : 15, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "false" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15175"), "nome" : "Frida", "dateOfBirth" : "14/09/1950", "nasceuEmSp" : "false", "id" : 16, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15176"), "nome" : "Fatima", "dateOfBirth" : "14/09/1960", "nasceuEmSp" : "true", "id" : 17, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "false" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15177"), "nome" : "Denise", "dateOfBirth" : "14/09/1986", "nasceuEmSp" : "false", "id" : 9, "livros" : [ { "titulo" : "You dont know JS", "leu" : "false" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15178"), "nome" : "Helena", "dateOfBirth" : "14/09/1990", "nasceuEmSp" : "true", "id" : 10, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "true" } ] }
+{ "_id" : ObjectId("5dc0afc2ecb2a56907a15179"), "nome" : "Sonia", "dateOfBirth" : "10/08/1954", "nasceuEmSp" : "false", "id" : 18, "livros" : [ { "titulo" : "You dont know JS", "leu" : "true" }, { "titulo" : "Eloquente Java", "leu" : "true" }, { "titulo" : "Clean Code", "leu" : "true" }, { "titulo" : "Cangaceiro Java", "leu" : "false" } ] }
+> db.alunas.find({"nome":"Sonia"}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> bd.alunas.find({"nasceuEmSp":"true"})
+2019-11-05T19:36:02.738-0300 E  QUERY    [js] uncaught exception: ReferenceError: bd is not defined :
+@(shell):1:1
+> bd.alunas.find({"nasceuEmSp":"true"}).pretty()
+2019-11-05T19:36:19.295-0300 E  QUERY    [js] uncaught exception: ReferenceError: bd is not defined :
+@(shell):1:1
+> db.alunas.find({"nasceuEmSp":"true"}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.find({"livros":{$in:[{"titulo":"Java - Web Developers"}]}}).pretty()
+> db.alunas.find({"livros":{$in:[{"titulo":"Cangaceiro Java"}]}}).pretty()
+> db.alunas.find({"livros":[{"titulo":"Cangaceiro Java"}]}}).pretty()
+2019-11-05T19:41:42.492-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:56
+> db.alunas.find({"livros.titulo":"Cangaceiro Java"}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({$and:[{"livro.titulo":"Clean Code","nome":"Helena"}]}).pretty()
+>
+>
+> db.alunas.find({$and:[{"livro.titulo":"Cangaceiro Javascript","nasceuEmSp":"false"}]}).pretty()
+> db.alunas.find({$and:[{"livro.titulo":"Cangaceiro Javascript","nasceuEmSp":"false"}]}).pretty()
+> db.alunas.find({$and:[{"livro.titulo":"Cangaceiro Javascript"},{"nasceuEmSp":"false"}]}).pretty()
+>
+> db.alunas.find({$and:[{"livro.titulo":"Cangaceiro Javascript","nasceuEmSp":"false"}]}).pretty()
+> db.alunas.find({$and:[{"livro.titulo":"Clean Code","nasceuEmSp":"false"}]}).pretty()
+> db.alunas.find({$and:[{"livros.titulo":"Clean Code","nasceuEmSp":"false"}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({$and:[{"livros.titulo":"Clean Code","nasceuEmSp":"false"}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({$and:[{"livros.titulo":"Clean Code","nasceuEmSp":"false"}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({$and:[{"livros.titulo":"Clean Code","nome":"Helena"}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.find({$or:[{"livros.titulo":"Clean Code","livros.titulo":"Eloquente Java"}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({$or:[{"livros.titulo":"Clean Code"},{"livros.titulo":"Eloquente Java"}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({$or:[{"livros.titulo":"Clean Code"},{"livros.titulo":"Eloquente Java"},"nasceuEmSp":"true"]}).pretty()
+2019-11-05T20:22:09.405-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing ] after element list :
+@(shell):1:99
+> db.alunas.find({$or:[{"livros.titulo":"Clean Code"},{"livros.titulo":"Eloquente Java"}],"nasceuEmSp":"true"}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.fin({$or:("nasceuEmSp":"true"),(["livros":{$in:[{"titulo":"Clean Code"},{"titulo":"Eloquente Java"}]}])}).pretty()
+2019-11-05T20:34:44.012-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing ) in parenthetical :
+@(shell):1:32
+> db.alunas.fin({$or:("nasceuEmSp":"true"),(["livros":{$in:[{"titulo":"Clean Code"},{"titulo":"Eloquente Java"}]}])}).pretty()
+2019-11-05T20:36:35.994-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing ) in parenthetical :
+@(shell):1:32
+> db.alunas.find({$or:("nasceuEmSp":"true"),(["livros":{$in:[{"titulo":"Clean Code"},{"titulo":"Eloquente Java"}]}])}).pretty()
+2019-11-05T20:37:58.739-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing ) in parenthetical :
+@(shell):1:33
+> db.alunas.find({$or:["nasceuEmSp":"true"],{$in:[{"livros.titulo":"Clean Code"},{"livros.titulo":"Eloquente Java"}]}db.alunas.find({$or:["nasceuEmSp":"true"],{$in:[{"livros.titulo":"Clean Code"},{"livros.titulo":"Eloquente Java"}]}).pretty()])}).pretty()
+2019-11-05T20:45:31.075-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing ] after element list :
+@(shell):1:33
+>
+> db.alunas.find({$or:["nasceuEmSp":"true"],(["livros":{$in:[{"titulo":"Clean Code"},{"titulo":"Eloquente Java"}]}])}).pretty()
+2019-11-05T21:29:07.237-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing ] after element list :
+@(shell):1:33
+> db.alunas.find({$or:[{"nasceuEmSp":"true"},{"livros.livros":{$in:["Clean Code","Eloquente Java"]}}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+Selecione todos os registros em que os livros contenham em qualquer parte da palavra, "Clean".
+*db.alunas.find({"livros.titulo":/Clean/}).pretty()
+
+Selecione todos os registros em que titulos dos livros terminem com a letra "s"
+*db.alunas.find({"livros.titulo":/s$/i}).pretty()
+
+Selecione todos so registros em que todos os livros terminem com a letra "t"
+*db.alunas.find({"livros.titulo":/t$/i}).pretty()
+
+Selecione todos os nomes das alunas que terminem com 'k' ou 'o'
+*
+
+db.alunas.find({"livros.titulo":/t$/i}).pretty()
+
+
+> db.alunas.find({'nome":/e/}).pretty()
+2019-11-05T21:52:18.765-0300 E  QUERY    [js] uncaught exception: SyntaxError: '' literal not terminated before end of script :
+@(shell):1:37
+> db.alunas.find({"nome":/e/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.find({"nome":/E/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.find({"nome":/E/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.find({"nome":/e/i/}).pretty()
+2019-11-05T21:55:53.330-0300 E  QUERY    [js] uncaught exception: SyntaxError: expected expression, got '}' :
+@(shell):1:28
+> db.alunas.find({"nome":/e/i/}).pretty()
+2019-11-05T21:56:36.401-0300 E  QUERY    [js] uncaught exception: SyntaxError: expected expression, got '}' :
+@(shell):1:28
+> db.alunas.find({"nome":/e/i}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.find({"nome":/S/i}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"nome":/S}).pretty()
+2019-11-05T21:57:49.592-0300 E  QUERY    [js] uncaught exception: SyntaxError: unterminated regular expression literal :
+@(shell):1:23
+> db.alunas.find({"nome":/S/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"nome":/e$/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"nome":/na$/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+> db.alunas.find({"nome":/ca$/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"livros":clean$/}).pretty()
+2019-11-05T22:04:53.256-0300 E  QUERY    [js] uncaught exception: SyntaxError: expected expression, got '}' :
+@(shell):1:32
+> db.alunas.find({"livros":/clean$/}).pretty()
+> db.alunas.find({"livros.titulo":/Clean$/}).pretty()
+> db.alunas.find({"livros.titulo":/Clean/}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"livros.titulo":/e$/i}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"livros.titulo":/s$/i}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516a"),
+        "nome" : "Maria ",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "false",
+        "id" : 3,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"livros.titulo":/t$/i}).pretty()
+> db.alunas.find({"livros.titulo":/t$/i}).pretty()
+>
+> db.alunas.find({$or({"livros.titulo":/k$/i},{"livros.titulo":/o$/i})}).pretty()
+2019-11-05T22:17:36.922-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing variable name :
+@(shell):1:37
+> db.alunas.find({$or:({"livros.titulo":/a$/i},{"livros.titulo":/e$/i})}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "$or must be an array",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.alunas.find({$or({"nome":/k$/i},{"nome":/o$/i})}).pretty()
+2019-11-05T22:19:36.168-0300 E  QUERY    [js] uncaught exception: SyntaxError: missing variable name :
+@(shell):1:28
+> db.alunas.find({$or:({"nome":/k$/i},{"nome":/o$/i})}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "$or must be an array",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.alunas.find({$or:({"nome":/e$/i},{"nome":/o$/i})}).pretty()
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "$or must be an array",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+> db.alunas.find({$or:[{"nome":/e$/i},{"nome":/o$/i}]}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15173"),
+        "nome" : "Maria do Bairro",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 14,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15177"),
+        "nome" : "Denise",
+        "dateOfBirth" : "14/09/1986",
+        "nasceuEmSp" : "false",
+        "id" : 9,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"nome":/a$/i}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15168"),
+        "nome" : "Maria Eduarda",
+        "dateOfBirth" : "11/08/1992",
+        "nasceuEmSp" : "true",
+        "id" : 4,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15169"),
+        "nome" : "Natalya",
+        "dateOfBirth" : "12/08/1989",
+        "nasceuEmSp" : "false",
+        "id" : 1,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516b"),
+        "nome" : "Natalia",
+        "dateOfBirth" : "11/08/1988",
+        "nasceuEmSp" : "true",
+        "id" : 2,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "pequeno principe",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516c"),
+        "nome" : "Bianca",
+        "dateOfBirth" : "11/08/1994",
+        "nasceuEmSp" : "true",
+        "id" : 5,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516d"),
+        "nome" : "Marcia",
+        "dateOfBirth" : "11/08/1991",
+        "nasceuEmSp" : "true",
+        "id" : 7,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516e"),
+        "nome" : "Barbara",
+        "dateOfBirth" : "11/08/1996",
+        "nasceuEmSp" : "false",
+        "id" : 6,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a1516f"),
+        "nome" : "Livia",
+        "dateOfBirth" : "14/09/1991",
+        "nasceuEmSp" : "true",
+        "id" : 8,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15170"),
+        "nome" : "Luanda",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "false",
+        "id" : 12,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15171"),
+        "nome" : "Larissa",
+        "dateOfBirth" : "14/09/1994",
+        "nasceuEmSp" : "true",
+        "id" : 13,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15172"),
+        "nome" : "Izadora",
+        "dateOfBirth" : "14/09/1992",
+        "nasceuEmSp" : "true",
+        "id" : 11,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15175"),
+        "nome" : "Frida",
+        "dateOfBirth" : "14/09/1950",
+        "nasceuEmSp" : "false",
+        "id" : 16,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15176"),
+        "nome" : "Fatima",
+        "dateOfBirth" : "14/09/1960",
+        "nasceuEmSp" : "true",
+        "id" : 17,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15178"),
+        "nome" : "Helena",
+        "dateOfBirth" : "14/09/1990",
+        "nasceuEmSp" : "true",
+        "id" : 10,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "true"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15179"),
+        "nome" : "Sonia",
+        "dateOfBirth" : "10/08/1954",
+        "nasceuEmSp" : "false",
+        "id" : 18,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+> db.alunas.find({"nome":/^a/i}).pretty()
+{
+        "_id" : ObjectId("5dc0afc2ecb2a56907a15174"),
+        "nome" : "Arya Stark ",
+        "dateOfBirth" : "14/09/2000",
+        "nasceuEmSp" : "false",
+        "id" : 15,
+        "livros" : [
+                {
+                        "titulo" : "You dont know JS",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Eloquente Java",
+                        "leu" : "false"
+                },
+                {
+                        "titulo" : "Clean Code",
+                        "leu" : "true"
+                },
+                {
+                        "titulo" : "Cangaceiro Java",
+                        "leu" : "false"
+                }
+        ]
+}
+>

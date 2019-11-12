@@ -1,0 +1,26 @@
+Selecione todos os registros em que os livros contenham em qualquer parte da palavra, "Clean".
+*db.alunas.find({"livros.titulo":/Clean/}).pretty()
+
+Selecione todos os registros em que titulos dos livros terminem com a letra "s"
+*db.alunas.find({"livros.titulo":/s$/i}).pretty()
+
+Selecione todos so registros em que todos os livros terminem com a letra "t"
+*db.alunas.find({"livros.titulo":/t$/i}).pretty()
+
+Selecione todos os nomes das alunas que terminem com 'k' ou 'o'
+db.alunas.find({$or:[{"nome":/k$/},{"nome":/o$/}]}).pretty()
+
+db.alunas.find($in:[{"nome":/k$/,/o$/}]}).pretty()
+
+Selecione todos os registros em que os nomes comecem com a letra 'a'.
+db.alunas.find({"nome":/^a/i}).pretty()
+
+Selecione todos os registros em que nomes comecem com a letra 'a' ou 'h'.
+db.alunas.find({"nome":{$in:[/^a/i, /^h/i]}}).pretty()
+
+
+$Sort
+
+db.alunas.find().sort({"dateOfBirth":-1}).pretty()
+
+db.alunas.find().sort({"nome":1}).pretty()
